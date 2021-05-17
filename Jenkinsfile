@@ -13,12 +13,16 @@ pipeline {
             } 
            stage('Building new image') {
                 steps { 
-                    script { dockerImage = docker.build registry + ":$BUILD_NUMBER"} 
+                    script { 
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                        } 
                 }
             }
                stage('Deploy our image') { 
                     steps { 
-                        script { docker.withRegistry( '', abouelmagd ) { dockerImage.push()}
+                        script { 
+                            docker.withRegistry( '', registryCredential ) { dockerImage.push()
+                            }
                     }
                 }
             }
