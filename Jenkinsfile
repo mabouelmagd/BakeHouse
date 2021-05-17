@@ -18,7 +18,7 @@ pipeline {
             }
                stage('Deploy our image') { 
                     steps { 
-                        script { docker.withRegistry( '', registryCredential ) { dockerImage.push()}
+                        script { docker.withRegistry( '', abouelmagd ) { dockerImage.push()}
                     }
                 }
             }
@@ -26,4 +26,4 @@ pipeline {
                      steps { sh "docker rmi $registry:$BUILD_NUMBER" }                 
                 }
      }
-} 
+     } 
